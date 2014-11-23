@@ -9,8 +9,8 @@ var Enemy = function() {
 
     this.x = -100;
     this.y = 5; 
-    this.speed = 10; 
-}
+    this.speed = 10;
+};
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -18,17 +18,25 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-}
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
+    // which image to render player
+    this.playerImg = 'images/char-boy.png';
+    // TODO: random boy/girl character or allow pick
+    // this.sprite = 'images/char-pink-girl.png';
+    
+    // initial placement of player image
+    this.x = 200;
+    this.y = 400;
   
 };
 
@@ -37,11 +45,11 @@ Player.prototype.update = function() {
 };
 
 Player.prototype.render = function() {
-
+    ctx.drawImage(Resources.get(this.playerImg), this.x, this.y);
 };
 
 Player.prototype.handleInput = function(key) {
-  console.log( key + ", ");
+  console.info( key + ", ");
 };
 
 
