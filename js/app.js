@@ -41,6 +41,24 @@ var Player = function() {
 };
 
 Player.prototype.update = function() {
+    switch (this.keyPressed) {
+    case "up":
+      this.y -= 10;
+      break;
+    case "right":
+        this.x += 10;
+        break;
+    case "down":
+        this.y += 10;
+        break;
+    case "left":
+        this.x -= 10;
+        break;
+    default:
+        // sleep zzzz ?
+    }
+
+    this.keyPressed = "";
 
 };
 
@@ -50,6 +68,7 @@ Player.prototype.render = function() {
 
 Player.prototype.handleInput = function(key) {
   console.info( key + ", ");
+  this.keyPressed = key;
 };
 
 
