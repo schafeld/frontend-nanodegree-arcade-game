@@ -43,8 +43,8 @@ var Player = function() {
 Player.prototype.update = function() {
     switch (this.keyPressed) {
     case "up":
-      this.y -= 10;
-      break;
+        this.y -= 10;
+        break;
     case "right":
         this.x += 10;
         break;
@@ -54,7 +54,6 @@ Player.prototype.update = function() {
     case "left":
         this.x -= 10;
         break;
-    default:
         // sleep zzzz ?
     }
 
