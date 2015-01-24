@@ -1,7 +1,7 @@
 frontend-nanodegree-arcade-game
 ===============================
 
-.h2 A game inspired by Frogger 
+## A game inspired by Frogger 
 
 Student: Oliver Schafeld
 Date: 2014-10-29
