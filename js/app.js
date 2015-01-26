@@ -1,6 +1,6 @@
-// var canvasWidth = 505;
-// var enemyPosY = [60, 143, 226];  // number of bugs
-// var enemySpeed = [10,20];        // speed of bugs
+var canvasWidth = 505;
+var enemyPosY = [60, 143, 226];  // number of bugs
+var enemySpeed = [10,20];        // speed of bugs
 
 // Enemies our player must avoid
 var Enemy = function() {

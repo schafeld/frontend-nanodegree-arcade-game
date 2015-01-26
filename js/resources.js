@@ -106,9 +106,6 @@
         load: load,
         get: get,
         onReady: onReady,
-        isReady: isReady,
-        enemySpeed : [10,20],
-        canvasWidth: 505,
-        enemyPosY: [60, 143, 226]
+        isReady: isReady
     };
 })();
