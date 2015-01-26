@@ -1,3 +1,7 @@
+// var canvasWidth = 505;
+// var enemyPosY = [60, 143, 226];  // number of bugs
+// var enemySpeed = [10,20];        // speed of bugs
+
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -8,8 +12,8 @@ var Enemy = function() {
     this.sprite = 'images/enemy-bug.png';
 
     this.x = -100;
-    this.y = 5; 
-    this.speed = 10;
+    this.y = enemyPosY[Math.floor(Math.random() * 3)];
+    this.speed = enemySpeed[Math.floor(Math.random() * 2)];
 };
 
 // Update the enemy's position, required method for game
@@ -18,6 +22,16 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    this.x = this.x + (this.speed * dt);
+    if (this.x > canvasWidth) {
+        this.x = -100;
+        // this.y = this.y + 83;
+        this.y = enemyPosY[Math.floor(Math.random() * 3)];
+        this.speed = enemySpeed[Math.floor(Math.random() * 2)];
+        if (this.y > 226) {
+            this.y = 60;
+        }
+    }
 };
 
 // Draw the enemy on the screen, required method for game
