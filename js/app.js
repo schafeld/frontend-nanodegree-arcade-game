@@ -1,5 +1,5 @@
 var canvasWidth = 505;
-var enemyPosY = [60, 143, 226];  // number of bugs
+var enemyPosY = [60, 143, 226];  // number of possible bug positions
 var enemySpeed = [10,20];        // speed of bugs
 
 // Enemies our player must avoid
@@ -103,7 +103,12 @@ document.addEventListener('keyup', function(e) {
         37: 'left',
         38: 'up',
         39: 'right',
-        40: 'down'
+        40: 'down',
+        65: 'left',     // a
+        68: 'right',    // d
+        83: 'down',     // s
+        87: 'up'        // w
+
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
