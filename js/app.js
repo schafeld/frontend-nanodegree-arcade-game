@@ -1,6 +1,10 @@
 var canvasWidth = 505;
-var enemyPosY = [60, 143, 226];  // number of possible bug positions
-var enemySpeed = [10,20];        // speed of bugs
+var enemyPosY  = [60, 140, 220];        // number of possible bug positions
+var enemySpeed = [10,20,40,60];         // possible speed of enemies/bugs
+var numberEnemies = 10;                 // total number of enemies
+var enemy;
+var allEnemies = [];
+var i = 0;
 
 // Enemies our player must avoid
 var Enemy = function() {
@@ -12,8 +16,8 @@ var Enemy = function() {
     this.sprite = 'images/enemy-bug.png';
 
     this.x = -100;
-    this.y = enemyPosY[Math.floor(Math.random() * 3)];
-    this.speed = enemySpeed[Math.floor(Math.random() * 2)];
+    this.y = enemyPosY[Math.floor(Math.random() * enemyPosY.length)];
+    this.speed = enemySpeed[Math.floor(Math.random() * enemySpeed.length)];
 };
 
 // Update the enemy's position, required method for game
@@ -88,11 +92,19 @@ Player.prototype.handleInput = function(key) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
+/*
 var enemy01 = new Enemy();
 var enemy02 = new Enemy();
 var enemy03 = new Enemy();
 var enemy04 = new Enemy();
 var allEnemies = [enemy01, enemy02, enemy03, enemy04];
+*/
+
+for (i =1; i < numberEnemies; i++) {
+    enemy = new Enemy();
+    allEnemies.push(enemy);
+}
+
 
 var player = new Player();
 
