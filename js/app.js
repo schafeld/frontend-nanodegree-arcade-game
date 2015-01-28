@@ -1,12 +1,13 @@
 var canvasWidth = 505;
 var enemyPosY  = [60, 140, 220];        // number of possible bug positions
-var enemySpeed = [10,20,40,60];         // possible speed of enemies/bugs
-var numberEnemies = 10;                 // total number of enemies
+var enemySpeed = [10,20,40,90];         // possible speed of enemies/bugs
+var numberEnemies = 6;                 // total number of enemies
 var enemy;
 var allEnemies = [];
 var i = 0;
 var playerInitialX = 200;
 var playerInitialY = 370;
+var playerStepSize = 30;
 // Todo: Put playing field size into var
 
 // Enemies our player must avoid
@@ -67,16 +68,16 @@ var Player = function() {
 Player.prototype.update = function() {
     switch (this.keyPressed) {
     case "up":
-        this.y -= 10;
+        this.y -= playerStepSize;
         break;
     case "right":
-        this.x += 10;
+        this.x += playerStepSize;
         break;
     case "down":
-        this.y += 10;
+        this.y += playerStepSize;
         break;
     case "left":
-        this.x -= 10;
+        this.x -= playerStepSize;
         break;
         // sleep zzzz ?
     }
@@ -85,7 +86,7 @@ Player.prototype.update = function() {
 
     // spatial boundaries for player
     // player position is reset if it touches upper boundary (water)
-    if (this.y < 60) {
+    if (this.y < 20) {
         this.reset();
         console.info("Splash!");
         // Todo: Game Over screen? Player death?
@@ -99,13 +100,13 @@ Player.prototype.update = function() {
     */ 
     // player bounces off lateral and lower boundaries
     if (this.x < 0) {
-        this.x += 5;
+        this.x += playerStepSize;
     }  
     if (this.x > canvasWidth - 95) {
-        this.x -= 5;
+        this.x -= playerStepSize;
     }  
     if (this.y > playerInitialY + 10 ) {
-        this.y -= 5;
+        this.y -= playerStepSize;
     }  
 
 
