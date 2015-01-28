@@ -6,7 +6,7 @@ var enemy;
 var allEnemies = [];
 var i = 0;
 var playerInitialX = 200;
-var playerInitialY = 400;
+var playerInitialY = 370;
 // Todo: Put playing field size into var
 
 // Enemies our player must avoid
@@ -37,6 +37,10 @@ Enemy.prototype.update = function(dt) {
         if (this.y > 220) {
             this.y = 60;
         }
+    }
+    // collision
+    if ( (Math.abs(this.x - player.x) < 80) && (Math.abs(this.y - player.y) < 60) ){
+        player.reset();
     }
 };
 
@@ -79,17 +83,31 @@ Player.prototype.update = function() {
 
     this.keyPressed = "";
 
-    //spatial boundaries for player, here water at playing field top
+    // spatial boundaries for player
+    // player position is reset if it touches upper boundary (water)
     if (this.y < 60) {
         this.reset();
         console.info("Splash!");
         // Todo: Game Over screen? Player death?
-    }    
+    } 
+    /*   
     if (this.x < 0 || this.x > 410 || this.y > 425) {
         this.reset();
         console.info("You fell off the board!");
         // Todo: Bounce/block player instead of reset?
-    }    
+    }  
+    */ 
+    // player bounces off lateral and lower boundaries
+    if (this.x < 0) {
+        this.x += 5;
+    }  
+    if (this.x > canvasWidth - 95) {
+        this.x -= 5;
+    }  
+    if (this.y > playerInitialY + 10 ) {
+        this.y -= 5;
+    }  
+
 
 };
 
@@ -98,8 +116,8 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(key) {
-  console.info( key + ", ");
-  this.keyPressed = key;
+    console.info( key + ", ");
+    this.keyPressed = key;
 };
 
 /**
@@ -107,8 +125,8 @@ Player.prototype.handleInput = function(key) {
  * Move the player to initial position.
  */
 Player.prototype.reset = function() {
-  this.x = playerInitialX;
-  this.y = playerInitialY;
+    this.x = playerInitialX;
+    this.y = playerInitialY;
 }
 
 
