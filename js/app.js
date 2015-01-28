@@ -7,6 +7,7 @@ var allEnemies = [];
 var i = 0;
 var playerInitialX = 200;
 var playerInitialY = 400;
+// Todo: Put playing field size into var
 
 // Enemies our player must avoid
 var Enemy = function() {
@@ -83,6 +84,11 @@ Player.prototype.update = function() {
         this.reset();
         console.info("Splash!");
         // Todo: Game Over screen? Player death?
+    }    
+    if (this.x < 0 || this.x > 410 || this.y > 425) {
+        this.reset();
+        console.info("You fell off the board!");
+        // Todo: Bounce/block player instead of reset?
     }    
 
 };
