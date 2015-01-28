@@ -5,6 +5,8 @@ var numberEnemies = 10;                 // total number of enemies
 var enemy;
 var allEnemies = [];
 var i = 0;
+var playerInitialX = 200;
+var playerInitialY = 400;
 
 // Enemies our player must avoid
 var Enemy = function() {
@@ -29,10 +31,9 @@ Enemy.prototype.update = function(dt) {
     this.x = this.x + (this.speed * dt);
     if (this.x > canvasWidth) {
         this.x = -100;
-        // this.y = this.y + 83;
         this.y = enemyPosY[Math.floor(Math.random() * 3)];
         this.speed = enemySpeed[Math.floor(Math.random() * 2)];
-        if (this.y > 226) {
+        if (this.y > 220) {
             this.y = 60;
         }
     }
@@ -53,8 +54,8 @@ var Player = function() {
     // this.sprite = 'images/char-pink-girl.png';
     
     // initial placement of player image
-    this.x = 200;
-    this.y = 400;
+    this.x = playerInitialX;
+    this.y = playerInitialY;
   
 };
 
@@ -77,6 +78,13 @@ Player.prototype.update = function() {
 
     this.keyPressed = "";
 
+    //spatial boundaries for player, here water at playing field top
+    if (this.y < 60) {
+        this.reset();
+        console.info("Splash!");
+        // Todo: Game Over screen? Player death?
+    }    
+
 };
 
 Player.prototype.render = function() {
@@ -88,23 +96,23 @@ Player.prototype.handleInput = function(key) {
   this.keyPressed = key;
 };
 
+/**
+ * Reset / restart(?) game
+ * Move the player to initial position.
+ */
+Player.prototype.reset = function() {
+  this.x = playerInitialX;
+  this.y = playerInitialY;
+}
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
-/*
-var enemy01 = new Enemy();
-var enemy02 = new Enemy();
-var enemy03 = new Enemy();
-var enemy04 = new Enemy();
-var allEnemies = [enemy01, enemy02, enemy03, enemy04];
-*/
+
+// Instantiation of game objects.
+// numberEnemies defined at top sets total number of enemy objects.
 
 for (i =1; i < numberEnemies; i++) {
     enemy = new Enemy();
     allEnemies.push(enemy);
 }
-
 
 var player = new Player();
 
@@ -125,3 +133,10 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+// Do not scroll window on arrow keys pressed. Todo: Loop?
+document.addEventListener('keydown', function(e) {
+  if ([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+    e.preventDefault();
+  }  
+}, false);
