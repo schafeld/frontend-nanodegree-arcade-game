@@ -8,8 +8,6 @@ var i = 0;
 var playerInitialX = 200;
 var playerInitialY = 370;
 var playerStepSize = 30;
-    var scoreVictory = document.getElementById("victory");
-    var scoreDefeat  = document.getElementById("defeat");
 // Todo: Put playing field size into var
 
 var Score = function() {
