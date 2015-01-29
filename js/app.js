@@ -1,14 +1,31 @@
 var canvasWidth = 505;
 var enemyPosY  = [60, 140, 220];        // number of possible bug positions
 var enemySpeed = [10,20,40,90];         // possible speed of enemies/bugs
-var numberEnemies = 6;                 // total number of enemies
+var numberEnemies = 6;                  // total number of enemies
 var enemy;
 var allEnemies = [];
 var i = 0;
 var playerInitialX = 200;
 var playerInitialY = 370;
 var playerStepSize = 30;
+    var scoreVictory = document.getElementById("victory");
+    var scoreDefeat  = document.getElementById("defeat");
 // Todo: Put playing field size into var
+
+var Score = function() {
+    this.victory = 1;
+    this.defeat  = 1;
+};
+
+Score.prototype.addVictory = function() {
+    document.getElementById("victory").textContent = (this.victory++).toString();
+};
+
+Score.prototype.addDefeat = function() {
+    document.getElementById("defeat").textContent = (this.defeat++).toString();
+};
+
+var score = new Score();
 
 // Enemies our player must avoid
 var Enemy = function() {
@@ -39,9 +56,10 @@ Enemy.prototype.update = function(dt) {
             this.y = 60;
         }
     }
-    // collision
+    // collision with bug-enemies means defeat
     if ( (Math.abs(this.x - player.x) < 80) && (Math.abs(this.y - player.y) < 60) ){
         player.reset();
+        score.addDefeat();
     }
 };
 
@@ -86,18 +104,14 @@ Player.prototype.update = function() {
 
     // spatial boundaries for player
     // player position is reset if it touches upper boundary (water)
+    // which counts as victory
     if (this.y < 20) {
         this.reset();
-        console.info("Splash!");
+        // console.info("Splash!");
+        score.addVictory();
         // Todo: Game Over screen? Player death?
     } 
-    /*   
-    if (this.x < 0 || this.x > 410 || this.y > 425) {
-        this.reset();
-        console.info("You fell off the board!");
-        // Todo: Bounce/block player instead of reset?
-    }  
-    */ 
+
     // player bounces off lateral and lower boundaries
     if (this.x < 0) {
         this.x += playerStepSize;
