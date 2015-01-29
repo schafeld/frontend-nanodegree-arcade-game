@@ -1,6 +1,6 @@
 var canvasWidth = 505;
-var enemyPosY  = [60, 140, 220];        // number of possible bug positions
-var enemySpeed = [10,20,40,90];         // possible speed of enemies/bugs
+var enemyPosY  = [20, 100, 180];        // number of possible bug positions
+var enemySpeed = [20,40,60,80,100,120]; // possible speed of enemies/bugs
 var numberEnemies = 6;                  // total number of enemies
 var enemy;
 var allEnemies = [];
@@ -48,8 +48,8 @@ Enemy.prototype.update = function(dt) {
     this.x = this.x + (this.speed * dt);
     if (this.x > canvasWidth) {
         this.x = -100;
-        this.y = enemyPosY[Math.floor(Math.random() * 3)];
-        this.speed = enemySpeed[Math.floor(Math.random() * 2)];
+        this.y = enemyPosY[Math.floor(Math.random() * enemyPosY.length)];
+        this.speed = enemySpeed[Math.floor(Math.random() * enemySpeed.length)];
         if (this.y > 220) {
             this.y = 60;
         }
