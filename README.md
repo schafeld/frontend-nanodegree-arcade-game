@@ -6,6 +6,7 @@ frontend-nanodegree-arcade-game
 ## Final course project: A game inspired by Frogger
 
 Student: Oliver Schafeld
+
 Date of submission: 2015-01-30
 
 
